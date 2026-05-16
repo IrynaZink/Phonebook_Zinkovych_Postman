@@ -1,0 +1,1041 @@
+{
+	"info": {
+		"_postman_id": "3a4751d2-cfb0-4f89-b057-f940704125a7",
+		"name": "Phonebook_Zinkovych",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "positive",
+					"item": [
+						{
+							"name": "LoginRegisteredUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "21fff893-231e-41d8-a0bd-4ff27551d598",
+										"exec": [
+											"var jsonData = pm.response.json();//Parse thr JSON response body\r",
+											"pm.environment.set(\"token\",jsonData.token);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "58978d35-9a6e-42e8-9e8b-dff03281db71",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "63e9b140-9bae-4205-aa56-3fa2d4bbd863",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"kristitomash001@gmail.com\",\r\n  \"password\": \"Aa12345!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
+							},
+							"response": []
+						}
+					],
+					"id": "f7843bbc-7cf2-44f5-8db3-0e18875db520",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8441449a-467b-4391-af50-81211b166c7d",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "155244ae-506a-4bc9-9a72-05aed6c8e42e",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "negative",
+					"item": [
+						{
+							"name": "LoginWithIncorrectPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fdbcd815-0026-4289-b86b-9f238b31c4b0",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1a6e84a9-4315-42c2-a53a-46ee8bb8bd84",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "9df71120-425c-4f7e-8faf-8231ea533046",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"irynazinkovych@gmail.com\",\r\n  \"password\": \"Zink12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
+							},
+							"response": []
+						},
+						{
+							"name": "LoginWithIncorrectPasswordEmail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fdbcd815-0026-4289-b86b-9f238b31c4b0",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1a6e84a9-4315-42c2-a53a-46ee8bb8bd84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "af2896df-f7bf-4cb3-b6c6-8754b9795c91",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"rynazinkovych@gmail.com\",\r\n  \"password\": \"Zink12345!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
+							},
+							"response": []
+						},
+						{
+							"name": "DublicateUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c7165e8b-4733-4cae-9125-c5aabad53863",
+										"exec": [
+											"\r",
+											"pm.test(\"Status code is 409\", function () {\r",
+											"    pm.response.to.have.status(409);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Conflict\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "24a4ef14-6aa0-4440-a7dd-e74a64a586e3",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "0dcbbd84-53ee-4354-a6e8-828b5e3759fa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"irynazinkovych@gmail.com\",\r\n  \"password\": \"Zink12345!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/user/registration/usernamepassword"
+							},
+							"response": []
+						}
+					],
+					"id": "07263a6c-7ba3-4c84-a721-2228b6241ded",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dc451991-7d57-4230-bf00-3dd16f59586d",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d11bbb7-1c62-4194-9344-9a56e86e185b",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"id": "e4bb19fd-6688-4523-b839-5476cb8e767a"
+		},
+		{
+			"name": "contact",
+			"item": [
+				{
+					"name": "positive",
+					"item": [
+						{
+							"name": "GetAllContactsBeforeAdd",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9bf3efa3-4cbb-4cf8-9970-ba939a8f9b43",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "425ec7c5-3e26-48c7-acd6-3c9ad2882641",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "0571d602-e4e4-4858-9dcb-fdcda101d15f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"kristitomash001@gmail.com\",\r\n  \"password\": \"Aa12345!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "AddNewContact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6b07be1c-0ed4-4a38-893c-933baddf4753",
+										"exec": [
+											"pm.test(\"Body matches string: Contact was added!\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Contact was added!\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d53f4c72-1b95-4436-b12a-18326b274c75",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "c8f308df-8cc0-44db-ad99-1267a77b2124",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Karl\",\r\n  \"lastName\": \"Adam\",\r\n  \"email\": \"karl@gmail.com\",\r\n  \"phone\": \"68600891631212\",\r\n  \"address\": \"Berlin\",\r\n  \"description\": \"QA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllContactsAfterAdd",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9bf3efa3-4cbb-4cf8-9970-ba939a8f9b43",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"//take the first element of the contacts array\r",
+											"let contactId = response.contacts[0].id;\r",
+											"//save in Environment\r",
+											"pm.environment.set(\"id\",contactId);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "cb4ba5e2-ccfa-48f8-aca9-c814e9d52539",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "af7bdbb5-e56c-42a8-bb6e-c2aea66f53c8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "ModifyContact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6b07be1c-0ed4-4a38-893c-933baddf4753",
+										"exec": [
+											"pm.test(\"Your test name:Contact was updated\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Contact was updated\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d53f4c72-1b95-4436-b12a-18326b274c75",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "b9fd87d9-5564-4cf7-ad71-56f6c02b57f0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{id}}\",\r\n  \"name\": \"Karl\",\r\n  \"lastName\": \"Adam\",\r\n  \"email\": \"karl@gmail.com\",\r\n  \"phone\": \"68600891631212\",\r\n  \"address\": \"NY\",\r\n  \"description\": \"QA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteContactById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce1d4dbd-af4a-41b5-a2da-df38a0f1b4ba",
+										"exec": [
+											"pm.test(\"Your test name: Contact was deleted!\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Contact was deleted!\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "284e8c00-b2c3-4921-92ec-3332c95cf12d",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "2d405670-74dc-4728-a448-172311051327",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseURI}}/v1/contacts/{{id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteAllContacts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce1d4dbd-af4a-41b5-a2da-df38a0f1b4ba",
+										"exec": [
+											"pm.test(\"Your test name: All contacts was deleted!!\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"All contacts was deleted!\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "284e8c00-b2c3-4921-92ec-3332c95cf12d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "a0324544-8ec7-44ac-a5f2-32769f42c2a1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts/clear"
+							},
+							"response": []
+						}
+					],
+					"id": "90db1248-e1b5-482a-aa89-7227792b9da0",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "58e85ca4-9e90-49d1-b6f5-04f4cc23a6ea",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "febc13ef-094c-4d58-9c88-3067129507d2",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "negative",
+					"item": [
+						{
+							"name": "NotAuthorizedUserGetContact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3ae4c5d7-6dc7-4a76-b2bc-5c6e9a6cb6e9",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "dd950dd0-855a-43f2-ae46-e05de34d9e36",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "e3108dea-9000-4c63-9858-88397f2a95df",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJy",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "AddINewContactIncorrectFormat",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "640f2418-322f-4ad2-8f76-4989245dcc2f",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a4753bb0-6744-44be-908c-728b6c301004",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "f94bdb00-0128-4c00-ac72-d169ba4dc7af",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"phone\": \"340985428259191\",\r\n  \"address\": \"string\",\r\n  \"description\": \"string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "WrongToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eaf698fc-8f6f-4a31-bf3e-db7f2f467b10",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"pm.test(\"Status code name has string\", function () {\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "cf8102f0-0c45-4d52-9097-9f7364fc1934",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "6f6227fd-0e7a-4f50-b925-8806777ed5ba",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"string\",\r\n  \"name\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"phone\": \"340985428259191\",\r\n  \"address\": \"string\",\r\n  \"description\": \"string\"\r\n}"
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "IncorrectModifyingContact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "30f9ee55-8ccf-47d1-9323-d22c97a6235f",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "758fc898-57e5-4876-a664-5a44c262c3d1",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "36879001-1f4e-4648-b960-880f1ec6735b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{id}}\",\r\n  \"name\": \"Karl\",\r\n  \"lastName\": \"Adam\",\r\n  \"email\": \"karlgmail.com\",\r\n  \"phone\": \"68600891631212\",\r\n  \"address\": \"NY\",\r\n  \"description\": \"QA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteContactByNotAuthorizedUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fa2a297c-e914-4961-b5c3-89fbc9b9b84c",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code name has string:Unauthorized\", function () {\r",
+											"    pm.response.to.have.status(\"Unauthorized\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "71fa515b-c8b9-4d9d-bab6-3ad2dfdeb0f2",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "00a9f710-06d9-467e-a27f-9dd9a30de027",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseURI}}/v1/contacts/{{id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteContactFromAmptyList",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fa2a297c-e914-4961-b5c3-89fbc9b9b84c",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code name has string:Unauthorized\", function () {\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "71fa515b-c8b9-4d9d-bab6-3ad2dfdeb0f2",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "ab079a8d-9c5b-4b71-9ab0-a3d97dc33c55",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseURI}}/v1/contacts/{{id}}"
+							},
+							"response": []
+						}
+					],
+					"id": "e454abe7-1fa5-4fb1-a6f5-67410181f370",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "23aeedf7-6246-48e4-b3d8-6b75a2f367f4",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d26958d4-92e7-43c6-9647-c23c958bffb3",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"id": "092386fd-4195-4791-a0a4-c1739543452c"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7d7928d6-cb56-4519-8546-aadb7b481a9f",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eac0ae98-9cc6-4efd-b89d-29160bd7253c",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"pm.test(\"Response time is less than 2000ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+					"});"
+				]
+			}
+		}
+	]
+}
